@@ -1,3 +1,3 @@
-# This file helps Railway/Nixpacks detect this as a Python project
-# The actual dependencies are in backend/requirements.txt
--r backend/requirements.txt 
+streamlit>=1.28.0
+openai>=1.35.0
+python-dotenv>=1.0.0 
