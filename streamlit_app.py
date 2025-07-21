@@ -702,13 +702,18 @@ def main():
     # Main form
     st.header("📝 Activity Analysis")
     
+    # Check for query parameters and use them to populate the form
+    default_activity = "Went for a 30-minute run"
+    if "activity" in st.query_params:
+        default_activity = st.query_params["activity"]
+    
     with st.form("ehw_calculator"):
         col1, col2 = st.columns([3, 1])
         
         with col1:
             activity_description = st.text_area(
                 "What did you do?",
-                value="Went for a 30-minute run",
+                value=default_activity,
                 height=100,
                 help="Describe your activity in detail. Examples: 'Scrolled Instagram for 2 hours', 'Studied Python programming', 'Had coffee with friends'"
             )
@@ -818,15 +823,18 @@ def main():
     
     with col1:
         if st.button("🏃‍♀️ Cardio Exercise", use_container_width=True):
-            st.experimental_set_query_params(activity="Went for a 45-minute jog")
+            st.query_params["activity"] = "Went for a 45-minute jog"
+            st.rerun()
     
     with col2:
         if st.button("📱 Social Media", use_container_width=True):
-            st.experimental_set_query_params(activity="Scrolled Instagram for 2 hours")
+            st.query_params["activity"] = "Scrolled Instagram for 2 hours"
+            st.rerun()
     
     with col3:
         if st.button("📚 Learning", use_container_width=True):
-            st.experimental_set_query_params(activity="Studied Python programming for 1 hour")
+            st.query_params["activity"] = "Studied Python programming for 1 hour"
+            st.rerun()
     
     # Footer
     st.markdown("---")
